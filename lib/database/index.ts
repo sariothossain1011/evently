@@ -5,7 +5,7 @@ let cached = (global as any).mongoose || {conn:null,promise:null};
 
 export const connectToDatabase = async()=>{
     if(cached.conn) return cached.conn;
-    if(!MONGODB_URL) throw new Error("MongoDB RUL is Missing!");
+    if(!MONGODB_URL) throw new Error("MongoDB URL is Missing!");
 
     cached.promise = cached.promise || mongoose.connect(MONGODB_URL,{dbName:'evently',bufferCommands:false});
     cached.conn = await cached.promise;
