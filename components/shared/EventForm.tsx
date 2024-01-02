@@ -11,6 +11,7 @@ import { eventDefaultValues } from "@/constants";
 import Dropdown from "./Dropdown";
 import FileUploader from "./FileUploader";
 import { useState } from "react";
+import { FaLocationDot } from "react-icons/fa6";
 type EventFormProps = {
     userId: string,
     type: "Create" | "Update"
@@ -87,6 +88,24 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                             )}
                         />
                     </div>
+                    <div className="flex flex-col gap-5 md:flex-row">
+                        <FormField
+                            control={form.control}
+                            name="location"
+                            render={({ field }) => (
+                                <FormItem className="w-full">
+                                    <FormControl>
+                                        <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                                            <FaLocationDot size={23}/>
+                                        <Input placeholder="Event location or online" {...field} className=" input-field" />    
+                                        </div>
+                                        
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        </div>
 
                     <Button type="submit">Submit</Button>
                 </form>
