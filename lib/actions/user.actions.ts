@@ -11,23 +11,16 @@ import Event from "../database/models/event.model";
 import { revalidatePath } from "next/cache";
 import Order from "../database/models/order.model";
 
-// export const createUser = async (user: CreateUserParams) => {
-//   try {
-//     await connectToDatabase();
-//     const newUser = await User.create(user);
-//     return JSON.parse(JSON.stringify(newUser));
-//     console.log("c")
-//   } catch (error) {
-//     console.log("f")
-//     handleError(error);
-//   }
-// };
-export async function createUser(user: CreateUserParams) {
-  try {
-    await connectToDatabase()
 
-    const newUser = await User.create(user)
+export const  createUser =async(user: CreateUserParams)=> {
+  try {
+    await connectToDatabase();
+
+    const newUser = await User.create(user);
+    console.log(newUser);
+    alert(newUser)
     return JSON.parse(JSON.stringify(newUser))
+    
   } catch (error) {
     handleError(error)
   }

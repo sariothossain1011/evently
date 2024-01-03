@@ -60,8 +60,7 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if (eventType === "user.created") {
-    const { id, email_addresses, image_url, first_name, last_name, username } =
-      evt.data;
+    const { id, email_addresses, image_url, first_name, last_name, username } =evt.data;
     const user = {
       clerkId: id,
       email: email_addresses[0].email_address,
@@ -71,6 +70,8 @@ export async function POST(req: Request) {
       photo: image_url,
     };
     const newUser = await createUser(user);
+    console.log(newUser);
+    alert(newUser)
 
     if (newUser) {
       await clerkClient.users.updateUserMetadata(id, {
@@ -79,11 +80,11 @@ export async function POST(req: Request) {
         },
       });
     }
-    return NextResponse.json({ messadge: "User Created", user: newUser });
+    return NextResponse.json({ messadge: "Ok", user: newUser });
   }
 
   if (eventType === "user.updated") {
-    const { id, email_addresses, image_url, first_name, last_name, username } =
+    const { id, image_url, first_name, last_name, username } =
       evt.data;
     const user = {
       username: username!,
@@ -103,16 +104,14 @@ export async function POST(req: Request) {
     //     },
     //     path:`/profile/${id}`
     // });
-    return NextResponse.json({
-      messadge: "User Updated",
-      user: updateUserData,
+    return NextResponse.json({messadge: "Ok",user: updateUserData,
     });
   }
   if (eventType === "user.deleted") {
     const { id } = evt.data;
     const deleteUser = await deleteUserById(id!);
-    return NextResponse.json({ message: "User deleted", user: deleteUser });
+    return NextResponse.json({ message: "Ok", user: deleteUser });
   }
 
-  return NextResponse.json({ status: 200, message: "Ok" });
+  return new Response('',{ status: 200});
 }
