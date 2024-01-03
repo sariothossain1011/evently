@@ -1,35 +1,35 @@
-// import mongoose from 'mongoose';
-
-// const MONGODB_URL = process.env.MONGODB_URL
-// let cached = (global as any).mongoose || {conn:null,promise:null};
-
-// export const connectToDatabase = async()=>{
-//     if(cached.conn) return cached.conn;
-//     if(!MONGODB_URL) throw new Error("MongoDB URL is Missing!");
-
-//     cached.promise = cached.promise || mongoose.connect(MONGODB_URL,{bufferCommands:false});
-//     cached.conn = await cached.promise;
-//     return cached.conn;
-// }
-
 import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URL = process.env.MONGODB_URL
+let cached = (global as any).mongoose || {conn:null,promise:null};
 
-let cached = (global as any).mongoose || { conn: null, promise: null };
+export const connectToDatabase = async()=>{
+    if(cached.conn) return cached.conn;
+    if(!MONGODB_URL) throw new Error("MongoDB URL is Missing!");
 
-export const connectToDatabase = async () => {
-  if (cached.conn) return cached.conn;
-
-  if(!MONGODB_URI) throw new Error('MONGODB_URI is missing');
-
-  cached.promise = cached.promise || mongoose.connect(MONGODB_URI, {
-    dbName: 'evently',
-    bufferCommands: false,
-  })
-
-  cached.conn = await cached.promise;
-
-  return cached.conn;
+    cached.promise = cached.promise || mongoose.connect(MONGODB_URL,{ dbName: 'evently',bufferCommands:false});
+    cached.conn = await cached.promise;
+    return cached.conn;
 }
+
+// import mongoose from 'mongoose';
+
+// const MONGODB_URI = process.env.MONGODB_URI;
+
+// let cached = (global as any).mongoose || { conn: null, promise: null };
+
+// export const connectToDatabase = async () => {
+//   if (cached.conn) return cached.conn;
+
+//   if(!MONGODB_URI) throw new Error('MONGODB_URI is missing');
+
+//   cached.promise = cached.promise || mongoose.connect(MONGODB_URI, {
+//     dbName: 'evently',
+//     bufferCommands: false,
+//   })
+
+//   cached.conn = await cached.promise;
+
+//   return cached.conn;
+// }
 
