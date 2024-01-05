@@ -33,6 +33,7 @@ const EventForm = ({ userId, type }: EventFormProps) => {
     const [files, setFiles] = useState<File[]>([]);
     const {startUpload} = useUploadThing('imageUploader');
     const router = useRouter();
+    console.log("form event id 1 : "+userId);
 
 
     const form = useForm<z.infer<typeof evnetFormSchema>>({
@@ -56,6 +57,7 @@ const EventForm = ({ userId, type }: EventFormProps) => {
                     userId,
                     path:'/profile'
                 })
+                console.log("form event id 2 : "+userId);
                 if(newEvent){
                     form.reset();
                     router.push(`/events/${newEvent._id}`);

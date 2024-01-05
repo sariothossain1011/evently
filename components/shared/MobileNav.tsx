@@ -20,7 +20,7 @@ const MobileNav = () => {
                     <FaBars size={28} />
                 </SheetTrigger>
                 <SheetContent className="flex flex-col gap-6 bg-white md:hidden">
-                <Link href='/' className=" w-36">
+                <Link href="/" className=" w-36">
                     <Image src='/assets/images/logo.png' width={128} height={38} alt="loto image" />
                 </Link>
                 <Separator />

@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <header className=" w-full border-b">
             <div className=" wrapper flex items-center justify-between">
-                <Link href='/' className=" w-36">
+                <Link href="/" className=" w-36">
                     <Image src='/assets/images/logo.png' width={128} height={38} alt="loto image" />
                 </Link>
                 <SignedIn>
@@ -26,7 +26,7 @@ const Header = () => {
                     </SignedIn>
                     <SignedOut>
                         <Button asChild className=" rounded-full" size='lg'>
-                            <Link href='/sign-in'>Sign In</Link>
+                            <Link href="/sign-in">Sign In</Link>
                         </Button>
                     </SignedOut>
                 </div>
